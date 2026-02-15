@@ -222,10 +222,7 @@
             lightboxImg.src = images[currentImageIndex].src;
         }
 
-        lightbox.onclick = function(e) {
-            if (e.target !== lightboxImg && e.target.tagName !== 'BUTTON') closeLightbox();
-        };
-
+     
         document.addEventListener('keydown', function(e) {
             if (lightbox.style.display === 'flex') {
                 if (e.key === "ArrowLeft") changeImage(-1);
@@ -236,6 +233,7 @@
     </script>
 </body>
 </html>
+
 
 
 
