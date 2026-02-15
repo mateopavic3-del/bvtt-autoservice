@@ -28,11 +28,14 @@
         .btn.alt{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.12)}
         
         main{max-width:1100px;margin:20px auto;padding:0 16px}
-        .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
-        .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(11,18,32,0.04)}
-        .services li{margin:8px 0}
-        .contact-links{display:flex;flex-direction:column;gap:10px}
-        .contact-links a{display:flex;align-items:center;justify-content:center;gap:10px;padding:12px;border-radius:8px;text-decoration:none;background:#0b1220;color:#fff;min-height:44px;font-size:14px}
+        .card{background:var(--card);padding:24px;border-radius:12px;box-shadow:0 6px 18px rgba(11,18,32,0.04)}
+        
+        /* Side-by-Side Location Section */
+        .location-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
 
         .gallery-grid {
             display: grid;
@@ -50,10 +53,7 @@
             cursor: pointer;
         }
         .gallery-item img:hover { transform: scale(1.03); }
-
-        .gallery-item:nth-child(n+4) {
-            display: none;
-        }
+        .gallery-item:nth-child(n+4) { display: none; }
 
         .btn-gallery {
             background-color: var(--accent);
@@ -65,27 +65,27 @@
             font-size: 16px;
             border: none;
             cursor: pointer;
-            transition: background 0.3s ease, transform 0.2s ease;
             box-shadow: 0 4px 15px rgba(31, 111, 235, 0.3);
             display: inline-flex;
             align-items: center;
             gap: 12px;
             margin-top: 25px;
         }
-        .btn-gallery:hover {
-            background-color: #1a5db5;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(31, 111, 235, 0.4);
-        }
+
+        .contact-links{display:flex;flex-direction:column;gap:10px}
+        .contact-links a{display:flex;align-items:center;justify-content:center;gap:10px;padding:12px;border-radius:8px;text-decoration:none;background:#0b1220;color:#fff;min-height:44px;font-size:14px}
 
         @media(min-width:768px){
             header{flex-wrap:nowrap;padding:16px 24px}
-            .logo img{width:64px;height:64px}
             nav{width:auto;margin-top:0;justify-content:flex-end}
-            nav a{margin-left:14px;font-size:16px;padding:0}
-            .hero{padding:40px 24px}
-            .hero .inner{padding:40px}
-            main{padding:0 24px;margin:28px auto}
+            nav a{margin-left:14px;font-size:16px}
+            main{padding:0 24px}
+            /* This makes them sit level on larger screens */
+            .location-container {
+                flex-direction: row;
+                justify-content: flex-start;
+                gap: 80px;
+            }
         }
     </style>
 </head>
@@ -121,7 +121,7 @@
     <main>
         <section id="services" class="card">
             <h2>Unsere Leistungen (Kurzüberblick)</h2>
-            <ul class="services">
+            <ul style="line-height: 1.8;">
                 <li>Reparaturen & Service aller Marken</li>
                 <li>Reifenverkauf & Montage</li>
                 <li>Software-Update & Leistungsoptimierung</li>
@@ -131,27 +131,26 @@
             </ul>
         </section>
 
-        <section id="standort" style="margin-top:18px">
-            <div class="card">
-                <h3>Standort & Anfahrt</h3>
-                <div style="display: flex; flex-wrap: wrap; gap: 40px;">
-                    <div>
-                        <p>BVTT Autoservice GbR<br>Kirchgasse 10 <br>34123 Kassel</p>
-                        <p><a href="https://www.google.com/maps/place/BVTT+Autoservice+GbR/@51.3058041,9.5261224,17z/data=!3m1!4b1!4m6!3m5!1s0x47bb395b6bc7ac95:0xac3fdf66a5875d0e!8m2!3d51.3058008!4d9.5286973!16s%2Fg%2F11yl145yd7?entry=ttu&g_ep=EgoyMDI2MDIwMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">Auf Google Maps öffnen</a></p>
-                    </div>
-                    <div>
-                        <p><strong>Öffnungszeiten</strong><br>Mo–Do: 08:00–16:00<br>Fr: 08:00-15:00<br>Sa-So:Geschlossen</p>
-                    </div>
+        <section id="standort" class="card" style="margin-top:18px">
+            <div class="location-container">
+                <div>
+                    <h3 style="margin-top:0">Standort & Anfahrt</h3>
+                    <p>BVTT Autoservice GbR<br>Kirchgasse 10 <br>34123 Kassel</p>
+                    <p><a href="https://www.google.com/maps/place/BVTT+Autoservice+GbR/@51.3058041,9.5261224,17z/data=!3m1!4b1!4m6!3m5!1s0x47bb395b6bc7ac95:0xac3fdf66a5875d0e!8m2!3d51.3058008!4d9.5286973!16s%2Fg%2F11yl145yd7?entry=ttu&g_ep=EgoyMDI2MDIwMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" style="color: var(--accent); font-weight: 600;">Auf Google Maps öffnen</a></p>
+                </div>
+                <div>
+                    <h3 style="margin-top:0">Öffnungszeiten</h3>
+                    <p>Mo–Fr: 08:00–16:00<br>Sa: nach Vereinbarung</p>
                 </div>
             </div>
         </section>
 
         <section id="galerie" class="card" style="margin-top:18px">
-            <h3 style="margin-bottom: 20px;">Impressionen aus unserer Werkstatt</h3>
+            <h3>Impressionen aus unserer Werkstatt</h3>
             <div class="gallery-grid">
                 <div class="gallery-item"><img src="ujko-1.jpg" alt="Werkstatt" onclick="openLightbox(0)"></div>
                 <div class="gallery-item"><img src="ujko-2.jpg" alt="Diagnose" onclick="openLightbox(1)"></div>
-                <div class="gallery-item"><img src="ujko-3.jpeg" alt="Reifen" onclick="openLightbox(2)"></div>
+                <div class="gallery-item"><img src="ujko-3.jpg" alt="Reifen" onclick="openLightbox(2)"></div>
                 <div class="gallery-item"><img src="ujko-4.jpg" onclick="openLightbox(3)"></div>
                 <div class="gallery-item"><img src="ujko-5.jpg" onclick="openLightbox(4)"></div>
                 <div class="gallery-item"><img src="ujko-6.jpg" onclick="openLightbox(5)"></div>
@@ -164,7 +163,7 @@
                 <div class="gallery-item"><img src="ujko-13.jpeg" onclick="openLightbox(12)"></div>
                 <div class="gallery-item"><img src="ujko-14.jpeg" onclick="openLightbox(13)"></div>
                 <div class="gallery-item"><img src="ujko-15.jpeg" onclick="openLightbox(14)"></div>
-                <div class="gallery-item"><img src="ujko-16.jpg" onclick="openLightbox(15)"></div>
+                <div class="gallery-item"><img src="ujko-16.jpeg" onclick="openLightbox(15)"></div>
                 <div class="gallery-item"><img src="ujko-17.jpeg" onclick="openLightbox(16)"></div>
                 <div class="gallery-item"><img src="ujko-18.jpeg" onclick="openLightbox(17)"></div>
                 <div class="gallery-item"><img src="ujko-19.jpeg" onclick="openLightbox(18)"></div>
@@ -172,33 +171,25 @@
             </div>
             <div style="text-align: center;">
                 <button class="btn-gallery" onclick="openLightbox(0)">
-                    <span style="font-size: 20px;">+</span> Alles Fotos ansehen
+                    <span>+</span> Alle 20 Fotos ansehen
                 </button>
             </div>
         </section>
 
         <section id="kontakt" class="card" style="margin-top:18px">
             <h3>Kontakt</h3>
-            <div class="grid">
-                <div>
-
-                    <div class="contact-links" style="margin-top:10px">
-                        <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=service@bv-tt.de" target="_blank" class="btn">E-Mail schreiben</a>
-                        <a href="https://wa.me/491607585036?text=Hallo%20BVTT%20Autoservice%20GbR%20-%20ich%20habe%20eine%20Frage" target="_blank" class="btn">WhatsApp Nachricht</a>
-                    </div>
-                </div>
+            <p>E-Mail: <a href="mailto:service@bv-tt.de" style="color: var(--accent);">service@bv-tt.de</a></p>
+            <p>Telefon: <a href="tel:+491607585036" style="color: var(--accent);">+49 160 7585036</a></p>
+            <div class="contact-links" style="margin-top:20px">
+                <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=service@bv-tt.de" target="_blank" class="btn">E-Mail schreiben</a>
+                <a href="https://wa.me/491607585036?text=Hallo%20BVTT%20Autoservice%20GbR%20-%20ich%20habe%20eine%20Frage" target="_blank" class="btn">WhatsApp Nachricht</a>
             </div>
         </section>
     </main>
 
-    <footer>
-        <div style="max-width:1100px;margin:0 auto;padding:8px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
-            <div style="display:flex;align-items:center;gap:12px">
-                <img src="ujko-logo.png" style="width:50px; height:50px; background:#fff; border-radius:8px; padding:4px" alt="Logo">
-                <div style="font-weight:600">BVTT Autoservice GbR</div>
-            </div>
-            <div style="font-size:13px;color:#8b98a8">© BVTT Autoservice GbR</div>
-        </div>
+    <footer style="padding: 40px 16px; text-align: center; color: #8b98a8; font-size: 13px;">
+        <img src="ujko-logo.png" style="width:50px; height:50px; background:#fff; border-radius:8px; padding:4px; margin-bottom: 10px;" alt="Logo"><br>
+        © BVTT Autoservice GbR - Alle Rechte vorbehalten
     </footer>
 
     <div id="lightbox" style="display:none; position:fixed; z-index:9999; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.92); align-items:center; justify-content:center;">
@@ -246,6 +237,4 @@
         });
     </script>
 </body>
-
 </html>
-
